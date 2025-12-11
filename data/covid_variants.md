@@ -26,7 +26,7 @@ import io
 
 ``` python
 # Read the Newick file
-with open('nextstrain_ncov_gisaid_north-america_6m_timetree.nwk', 'r') as f:
+with open('nextstrain_ncov_gisaid_north-america_all-time_timetree.nwk', 'r') as f:
     content = f.read()
 
 # Parse the tree
@@ -37,7 +37,7 @@ terminals = tree.get_terminals()
 print(f"Total number of variants in the tree: {len(terminals)}")
 ```
 
-    Total number of variants in the tree: 2869
+    Total number of variants in the tree: 3039
 
 ## Convert Branch Lengths to Dates
 
@@ -89,7 +89,7 @@ for terminal in terminals:
 print(f"Total variants processed: {len(variants_data)}")
 ```
 
-    Total variants processed: 2869
+    Total variants processed: 3039
 
 ## Examine the Date Distribution
 
@@ -107,21 +107,21 @@ print(df[['variant_name', 'decimal_year', 'date']].head(10).to_string(index=Fals
 ```
 
     Date range of samples:
-      Earliest: 2020-01-09
-      Latest: 2025-09-04
+      Earliest: 2020-01-05
+      Latest: 2025-09-02
 
     Sample of variant data (first 10):
                                variant_name  decimal_year       date
-    hCoV-19/USA/Cruise-CDC-3054899-001/2020      2020.107 2020-02-09
-               hCoV-19/USA/NY1-PV08001/2020      2020.129 2020-02-17
-       hCoV-19/USA/CA-CDC-02993471-001/2020      2020.027 2020-01-10
-               hCoV-19/USA/TX-HMH-1788/2020      2020.328 2020-04-30
-              hCoV-19/USA/MA-MGH-00614/2020      2020.205 2020-03-16
-         hCoV-19/Mexico/CMX-INER-IBT-4/2020      2020.208 2020-03-17
-                     hCoV-19/USA/WA-S2/2020      2020.107 2020-02-09
-                     hCoV-19/USA/WA-S3/2020      2020.126 2020-02-16
-     hCoV-19/USA/MD-HP09649-PIDXSVKTIH/2020      2020.265 2020-04-06
-                   hCoV-19/USA/WA-S174/2020      2020.180 2020-03-06
+       hCoV-19/USA/CA-CDC-03039618-001/2020      2020.045 2020-01-17
+    hCoV-19/Jamaica/un-CDC-3088774-001/2020      2020.154 2020-02-26
+       hCoV-19/USA/CA-CDC-02993506-001/2020      2020.025 2020-01-10
+                hCoV-19/USA/CA-CDPH016/2020      2020.127 2020-02-16
+               hCoV-19/USA/CA-CDPH-UC2/2020      2020.124 2020-02-15
+           hCoV-19/Mexico/JAL-InDRE-16/2020      2020.178 2020-03-06
+               hCoV-19/USA/CA-CZB-1239/2020      2020.329 2020-04-30
+                hCoV-19/USA/NV-QDX-543/2020      2020.178 2020-03-06
+       hCoV-19/USA/CA-CDC-03062962-001/2020      2020.121 2020-02-14
+       hCoV-19/USA/CA-CDC-03040142-001/2020      2020.045 2020-01-17
 
 ## Create Dataset by Month
 
@@ -144,26 +144,26 @@ print(variants_by_month.head(20).to_string(index=False))
 
     Variants by Month (showing first 20 rows):
     year_month  variant_count  cumulative_count
-       2020-01              2                 2
-       2020-02              6                 8
-       2020-03             16                24
-       2020-04              8                32
-       2020-05              8                40
-       2020-06             13                53
-       2020-07             11                64
-       2020-08              6                70
-       2020-09              8                78
-       2020-10             12                90
-       2020-11              9                99
-       2020-12             10               109
-       2021-01             10               119
-       2021-02              8               127
-       2021-03             10               137
-       2021-04             10               147
-       2021-05             12               159
-       2021-06              4               163
-       2021-07             10               173
-       2021-08             11               184
+       2020-01             12                12
+       2020-02             36                48
+       2020-03             60               108
+       2020-04             45               153
+       2020-05             46               199
+       2020-06             50               249
+       2020-07             47               296
+       2020-08             37               333
+       2020-09             38               371
+       2020-10             37               408
+       2020-11             43               451
+       2020-12             47               498
+       2021-01             49               547
+       2021-02             47               594
+       2021-03             53               647
+       2021-04             48               695
+       2021-05             47               742
+       2021-06             44               786
+       2021-07             57               843
+       2021-08             50               893
 
 ## Create Dataset by Year
 
@@ -182,12 +182,12 @@ print(variants_by_year.to_string(index=False))
 
     Variants by Year:
      year  variant_count  cumulative_count
-     2020            109               109
-     2021            118               227
-     2022            136               363
-     2023            120               483
-     2024            114               597
-     2025           2272              2869
+     2020            498               498
+     2021            584              1082
+     2022            600              1682
+     2023            525              2207
+     2024            506              2713
+     2025            326              3039
 
 ## Visualization
 
@@ -269,26 +269,26 @@ print(variants_by_month.head(20).to_string(index=False))
 
     CSV Contents (covid_variants.csv - first 20 rows):
     year_month  variant_count  cumulative_count
-       2020-01              2                 2
-       2020-02              6                 8
-       2020-03             16                24
-       2020-04              8                32
-       2020-05              8                40
-       2020-06             13                53
-       2020-07             11                64
-       2020-08              6                70
-       2020-09              8                78
-       2020-10             12                90
-       2020-11              9                99
-       2020-12             10               109
-       2021-01             10               119
-       2021-02              8               127
-       2021-03             10               137
-       2021-04             10               147
-       2021-05             12               159
-       2021-06              4               163
-       2021-07             10               173
-       2021-08             11               184
+       2020-01             12                12
+       2020-02             36                48
+       2020-03             60               108
+       2020-04             45               153
+       2020-05             46               199
+       2020-06             50               249
+       2020-07             47               296
+       2020-08             37               333
+       2020-09             38               371
+       2020-10             37               408
+       2020-11             43               451
+       2020-12             47               498
+       2021-01             49               547
+       2021-02             47               594
+       2021-03             53               647
+       2021-04             48               695
+       2021-05             47               742
+       2021-06             44               786
+       2021-07             57               843
+       2021-08             50               893
 
 ## Summary Statistics
 
@@ -303,11 +303,11 @@ print(f"Average variants per month: {variants_by_month['variant_count'].mean():.
 
 
     === Summary Statistics ===
-    Total variants analyzed: 2869
-    Date range: 2020-01-09 to 2025-09-04
+    Total variants analyzed: 3039
+    Date range: 2020-01-05 to 2025-09-02
     Number of months covered: 69
-    Month with most variants: 2025-04 (574 variants)
-    Average variants per month: 41.6
+    Month with most variants: 2020-03 (60 variants)
+    Average variants per month: 44.0
 
 ## Raw Data Sample
 
@@ -320,33 +320,33 @@ for i, row in df.head(15).iterrows():
 
 
     Sample of variant data with dates (first 15):
-      - hCoV-19/USA/Cruise-CDC-3054899-001/2020
+      - hCoV-19/USA/CA-CDC-03039618-001/2020
+          Date: 2020-01-17 (decimal year: 2020.045)
+      - hCoV-19/Jamaica/un-CDC-3088774-001/2020
+          Date: 2020-02-26 (decimal year: 2020.154)
+      - hCoV-19/USA/CA-CDC-02993506-001/2020
+          Date: 2020-01-10 (decimal year: 2020.025)
+      - hCoV-19/USA/CA-CDPH016/2020
+          Date: 2020-02-16 (decimal year: 2020.127)
+      - hCoV-19/USA/CA-CDPH-UC2/2020
+          Date: 2020-02-15 (decimal year: 2020.124)
+      - hCoV-19/Mexico/JAL-InDRE-16/2020
+          Date: 2020-03-06 (decimal year: 2020.178)
+      - hCoV-19/USA/CA-CZB-1239/2020
+          Date: 2020-04-30 (decimal year: 2020.329)
+      - hCoV-19/USA/NV-QDX-543/2020
+          Date: 2020-03-06 (decimal year: 2020.178)
+      - hCoV-19/USA/CA-CDC-03062962-001/2020
+          Date: 2020-02-14 (decimal year: 2020.121)
+      - hCoV-19/USA/CA-CDC-03040142-001/2020
+          Date: 2020-01-17 (decimal year: 2020.045)
+      - hCoV-19/USA/IA-SHL-942427/2020
+          Date: 2020-03-04 (decimal year: 2020.173)
+      - hCoV-19/USA/Cruise-CDC-03056916-001/2020
+          Date: 2020-02-12 (decimal year: 2020.116)
+      - hCoV-19/USA/Cruise-CDC-03052607-001/2020
+          Date: 2020-02-05 (decimal year: 2020.097)
+      - hCoV-19/USA/Cruise-CDC-3055039-001/2020
           Date: 2020-02-09 (decimal year: 2020.107)
-      - hCoV-19/USA/NY1-PV08001/2020
-          Date: 2020-02-17 (decimal year: 2020.129)
-      - hCoV-19/USA/CA-CDC-02993471-001/2020
-          Date: 2020-01-10 (decimal year: 2020.027)
-      - hCoV-19/USA/TX-HMH-1788/2020
-          Date: 2020-04-30 (decimal year: 2020.328)
-      - hCoV-19/USA/MA-MGH-00614/2020
-          Date: 2020-03-16 (decimal year: 2020.205)
-      - hCoV-19/Mexico/CMX-INER-IBT-4/2020
-          Date: 2020-03-17 (decimal year: 2020.208)
-      - hCoV-19/USA/WA-S2/2020
+      - hCoV-19/USA/Cruise-CDC-3054940-001/2020
           Date: 2020-02-09 (decimal year: 2020.107)
-      - hCoV-19/USA/WA-S3/2020
-          Date: 2020-02-16 (decimal year: 2020.126)
-      - hCoV-19/USA/MD-HP09649-PIDXSVKTIH/2020
-          Date: 2020-04-06 (decimal year: 2020.265)
-      - hCoV-19/USA/WA-S174/2020
-          Date: 2020-03-06 (decimal year: 2020.18)
-      - hCoV-19/USA/IL-CDC-02983522-001/2020
-          Date: 2020-01-09 (decimal year: 2020.022)
-      - hCoV-19/USA/CA-SCCPHD-UC103/2020
-          Date: 2020-02-16 (decimal year: 2020.126)
-      - hCoV-19/Canada/BC-BCCDC-166226/2020
-          Date: 2020-10-16 (decimal year: 2020.79)
-      - hCoV-19/USA/IL-RUSH-00555/2020
-          Date: 2020-03-22 (decimal year: 2020.224)
-      - hCoV-19/Cuba/USAFSAM-S031/2020
-          Date: 2020-03-12 (decimal year: 2020.194)

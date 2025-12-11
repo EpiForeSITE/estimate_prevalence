@@ -1,20 +1,22 @@
 ---
 title: "COVID-19 Variants Over Time"
+author: GitHub Copilot
+date: 2024-06-10
 format:
   gfm:
     output-file: covid_variants.md
 engine: jupyter
 ---
 
+::: {.callout-note}
+This file was generated using GitHub Copilot and has been reviewed and edited by a human.
+:::
+
 ## Overview
 
-This document processes phylogenetic data from a Newick file containing COVID-19 variant
-sequences from North America. The goal is to extract the date/time information from each
-variant and count the number of distinct variants observed at each time point.
+This document processes phylogenetic data from a Newick file containing COVID-19 variant sequences from North America. The goal is to extract the date/time information from each variant and count the number of distinct variants observed at each time point.
 
-The Newick file is a timetree where branch lengths are in units of years. By calculating
-the distance from the root to each terminal node, we can determine the date of each variant
-sample.
+The Newick file is a timetree where branch lengths are in units of years. By calculating the distance from the root to each terminal node, we can determine the date of each variant sample.
 
 ## Load Libraries
 
@@ -30,7 +32,7 @@ import io
 
 ```{python}
 # Read the Newick file
-with open('nextstrain_ncov_gisaid_north-america_6m_timetree.nwk', 'r') as f:
+with open('nextstrain_ncov_gisaid_north-america_all-time_timetree.nwk', 'r') as f:
     content = f.read()
 
 # Parse the tree
@@ -43,9 +45,7 @@ print(f"Total number of variants in the tree: {len(terminals)}")
 
 ## Convert Branch Lengths to Dates
 
-The timetree has branch lengths in units of years. The root represents the most recent 
-common ancestor of SARS-CoV-2. Based on the tree structure, we set the root date to 
-December 2019 (the beginning of the COVID-19 pandemic).
+The timetree has branch lengths in units of years. The root represents the most recent common ancestor of SARS-CoV-2. Based on the tree structure, we set the root date to December 2019 (the beginning of the COVID-19 pandemic).
 
 ```{python}
 def decimal_year_to_date(decimal_year):
