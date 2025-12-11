@@ -2,7 +2,7 @@
 
 - [covid_data_utah.csv](data/covid_data_utah.csv): COVID-19 case and variant data for Utah. Source: https://ibis.utah.gov/ibisph-view/query/result/covid/COVID19/Count.html
 
-- [covid19 variants](data/covid_variants.md): COVID-19 variants as observed from phylogenetic trees. This file uses data from <https://nextstrain.org>
+- [COVID-19 variants](data/covid_variants.md): COVID-19 variants as observed from phylogenetic trees. This file uses data from <https://nextstrain.org>
 
 ## References
 

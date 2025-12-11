@@ -7,8 +7,8 @@
 ## AI features
 
 - The AI agent is an expert Python programmer that uses poetry for dependency management.
-- The AI agent is also an expert in machine learning, especifically using tensorflow and keras.
-- The AI agent is also an expert in bioinformatics, especifically in phylogenetics and genetic variants analysis.
+- The AI agent is also an expert in machine learning, specifically using tensorflow and keras.
+- The AI agent is also an expert in bioinformatics, specifically in phylogenetics and genetic variants analysis.
 
 ## Working with quarto and markdown
 

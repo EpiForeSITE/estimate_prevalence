@@ -1,5 +1,11 @@
 # COVID-19 Variants Over Time
+GitHub Copilot
+2025-12-11
 
+> [!NOTE]
+>
+> This file was generated using GitHub Copilot and has been reviewed and
+> edited by a human.
 
 ## Overview
 

@@ -1,7 +1,7 @@
 ---
 title: "COVID-19 Variants Over Time"
 author: GitHub Copilot
-date: 2024-06-10
+date: 2025-12-11
 format:
   gfm:
     output-file: covid_variants.md
@@ -21,6 +21,7 @@ The Newick file is a timetree where branch lengths are in units of years. By cal
 ## Load Libraries
 
 ```{python}
+#| label: load-libraries
 from Bio import Phylo
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -31,6 +32,7 @@ import io
 ## Read and Parse the Phylogenetic Tree
 
 ```{python}
+#| label: read-parse-tree
 # Read the Newick file
 with open('nextstrain_ncov_gisaid_north-america_all-time_timetree.nwk', 'r') as f:
     content = f.read()
@@ -48,6 +50,7 @@ print(f"Total number of variants in the tree: {len(terminals)}")
 The timetree has branch lengths in units of years. The root represents the most recent common ancestor of SARS-CoV-2. Based on the tree structure, we set the root date to December 2019 (the beginning of the COVID-19 pandemic).
 
 ```{python}
+#| label: convert-dates
 def decimal_year_to_date(decimal_year):
     """Convert a decimal year value to a date.
     
@@ -93,6 +96,7 @@ print(f"Total variants processed: {len(variants_data)}")
 ## Examine the Date Distribution
 
 ```{python}
+#| label: examine-dates
 # Create a DataFrame
 df = pd.DataFrame(variants_data)
 df['date'] = pd.to_datetime(df['date'])
@@ -110,6 +114,7 @@ print(df[['variant_name', 'decimal_year', 'date']].head(10).to_string(index=Fals
 For more granular analysis, we'll count variants by month.
 
 ```{python}
+#| label: create-monthly-data
 # Create year-month column for grouping
 df['year_month'] = df['date'].dt.to_period('M')
 
@@ -127,6 +132,7 @@ print(variants_by_month.head(20).to_string(index=False))
 ## Create Dataset by Year
 
 ```{python}
+#| label: create-yearly-data
 # Count variants by year
 variants_by_year = df.groupby('year').size().reset_index(name='variant_count')
 variants_by_year.columns = ['year', 'variant_count']
@@ -196,6 +202,7 @@ plt.show()
 We save both the monthly and yearly aggregated data.
 
 ```{python}
+#| label: save-csv
 # Save the monthly dataset to CSV (more granular - primary output)
 variants_by_month.to_csv('covid_variants.csv', index=False)
 print(f"Monthly data saved to covid_variants.csv")
@@ -211,6 +218,7 @@ print(variants_by_month.head(20).to_string(index=False))
 ## Summary Statistics
 
 ```{python}
+#| label: summary-stats
 print(f"\n=== Summary Statistics ===")
 print(f"Total variants analyzed: {len(df)}")
 print(f"Date range: {df['date'].min().strftime('%Y-%m-%d')} to {df['date'].max().strftime('%Y-%m-%d')}")
@@ -222,6 +230,7 @@ print(f"Average variants per month: {variants_by_month['variant_count'].mean():.
 ## Raw Data Sample
 
 ```{python}
+#| label: raw-data-sample
 print("\nSample of variant data with dates (first 15):")
 for i, row in df.head(15).iterrows():
     print(f"  - {row['variant_name']}")
