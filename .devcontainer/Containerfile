@@ -29,9 +29,11 @@ RUN DEBIAN_FRONTEND=noninteractive \
 # Python and uv installation
 USER $USER
 ARG HOME="/home/$USER"
-ARG PYTHON_VERSION=3.11
 
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 ENV PATH="${HOME}/.local/bin:$PATH"
+
+# Install Python 3.11 using uv and sync dependencies
+WORKDIR /workspaces/estimate_prevalence
