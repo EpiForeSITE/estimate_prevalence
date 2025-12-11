@@ -13,7 +13,13 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "tensorflow (>=2.20.0,<3.0.0)",
-    "ipykernel (>=7.1.0,<8.0.0)"
+    "ipykernel (>=7.1.0,<8.0.0)",
+    "matplotlib (>=3.10.8,<4.0.0)",
+    "pydot (>=4.0.1,<5.0.0)",
+    # Needed by quarto
+    "pyyaml (>=6.0.3,<7.0.0)",
+    "nbformat (>=5.10.4,<6.0.0)",
+    "nbclient (>=0.10.2,<0.11.0)"
 ]
 
 
