@@ -19,7 +19,9 @@ dependencies = [
     # Needed by quarto
     "pyyaml (>=6.0.3,<7.0.0)",
     "nbformat (>=5.10.4,<6.0.0)",
-    "nbclient (>=0.10.2,<0.11.0)"
+    "nbclient (>=0.10.2,<0.11.0)",
+    "bio (>=1.8.1,<2.0.0)",
+    "pandas (>=2.3.3,<3.0.0)"
 ]
 
 
