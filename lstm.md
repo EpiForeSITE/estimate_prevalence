@@ -105,7 +105,7 @@ for _ in range(forecast_horizon):
 print(f"Next {forecast_horizon} value predictions:", future_predictions)
 ```
 
-    Next 10 value predictions: [np.float32(46.756332), np.float32(40.566196), np.float32(32.509727), np.float32(25.842226), np.float32(25.8815), np.float32(37.112373), np.float32(45.10941), np.float32(48.16177), np.float32(44.749073), np.float32(34.23605)]
+    Next 10 value predictions: [np.float32(43.807484), np.float32(41.981304), np.float32(26.936506), np.float32(24.1416), np.float32(25.002794), np.float32(31.247185), np.float32(41.300762), np.float32(45.493607), np.float32(42.474407), np.float32(33.688885)]
 
 We now visualize the observed data and the prediction
 
