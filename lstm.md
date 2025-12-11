@@ -1,9 +1,6 @@
----
-engine: jupyter
-format: gfm
----
 
-```{python}
+
+``` python
 import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
@@ -20,7 +17,7 @@ data = np.genfromtxt(
 
 This is how the data looks like (timeseries plot):
 
-```{python}
+``` python
 import matplotlib.pyplot as plt
 plt.plot(data)
 plt.title('Time Series Data')
@@ -29,9 +26,12 @@ plt.ylabel('Value')
 plt.show()
 ```
 
-Since the second half is normalized, we will focus on it for the training:
+![](lstm_files/figure-commonmark/cell-3-output-1.png)
 
-```{python}
+Since the second half is normalized, we will focus on it for the
+training:
+
+``` python
 data = data[len(data)//2:]
 
 # --- 2. Prepare sequence data (look-back=10) ---
@@ -51,8 +51,7 @@ X = X.reshape((X.shape[0], X.shape[1], 1))
 
 Now we build the LSTM model and visualize the architecture:
 
-```{python}
-#| label: lstm-model
+``` python
 # --- 3. Build model ---
 model = Sequential()
 model.add(LSTM(50, activation='tanh', input_shape=(look_back, 1)))
@@ -64,11 +63,15 @@ from tensorflow.keras.utils import plot_model
 plot_model(model, to_file='lstm_model.png', show_shapes=True)
 ```
 
+    /workspaces/estimate_prevalence/.venv/lib/python3.11/site-packages/keras/src/layers/rnn/rnn.py:199: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+      super().__init__(**kwargs)
+
+<img src="lstm_files/figure-commonmark/lstm-model-output-2.png"
+id="lstm-model" />
+
 Training the model and making multi-step predictions:
 
-```{python}
-#| label: lstm-training
-
+``` python
 # --- 4. Train ---
 model.fit(X, y, epochs=100, batch_size=16, verbose=0)
 
@@ -81,8 +84,10 @@ plt.xlabel('Epoch')
 plt.show()
 ```
 
-```{python}
-#| label: lstm-prediction
+<img src="lstm_files/figure-commonmark/lstm-training-output-1.png"
+id="lstm-training" />
+
+``` python
 # --- 5. Predict next 10 values ---
 forecast_horizon = 10
 future_predictions = []
@@ -100,9 +105,11 @@ for _ in range(forecast_horizon):
 print(f"Next {forecast_horizon} value predictions:", future_predictions)
 ```
 
+    Next 10 value predictions: [np.float32(46.756332), np.float32(40.566196), np.float32(32.509727), np.float32(25.842226), np.float32(25.8815), np.float32(37.112373), np.float32(45.10941), np.float32(48.16177), np.float32(44.749073), np.float32(34.23605)]
+
 We now visualize the observed data and the prediction
 
-```{python}
+``` python
 data_last_60 = data[-60:]
 
 # Plot observed data
@@ -116,3 +123,4 @@ plt.legend()
 plt.show()
 ```
 
+![](lstm_files/figure-commonmark/cell-8-output-1.png)
